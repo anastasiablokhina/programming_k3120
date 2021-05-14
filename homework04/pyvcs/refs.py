@@ -11,7 +11,12 @@ def update_ref(gitdir: pathlib.Path, ref: tp.Union[str, pathlib.Path], new_value
 
 def symbolic_ref(gitdir: pathlib.Path, name: str, ref: str) -> None:
     # PUT YOUR CODE HERE
-    pass
+    gitdr = pathlib.Path(gitdir).absolute()
+    pathlib.Path(gitdr/name).touch()
+    file = pathlib.Path(gitdr/name)
+    with open(file, "w") as f:
+        f.write(f"ref: {ref}")
+        f.close()
 
 
 def ref_resolve(gitdir: pathlib.Path, refname: str) -> str:
